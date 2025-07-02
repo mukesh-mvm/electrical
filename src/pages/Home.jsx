@@ -7,6 +7,7 @@ import ContactSection from '../componets/ContactSection'
 import ExperienceCentreBanner from '../componets/ExperienceCentreBanner'
 import ExperienceStats from '../componets/ExperienceStats '
 
+
  const Home = () => {
   return (
     <div>
@@ -17,6 +18,7 @@ import ExperienceStats from '../componets/ExperienceStats '
         <ElectricalServices/>
         <ExperienceCentreBanner/>
         <ContactSection/>
+       
        
     </div>
   )
