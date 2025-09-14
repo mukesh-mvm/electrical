@@ -6,18 +6,22 @@ import ElectricalServices from '../componets/ElectricalServices'
 import ContactSection from '../componets/ContactSection'
 import ExperienceCentreBanner from '../componets/ExperienceCentreBanner'
 import ExperienceStats from '../componets/ExperienceStats '
+import HelpBrands from '../componets/HomePageService'
+import OfficeWiringPage from '../componets/office/OfficeWiringPage'
 
 
  const Home = () => {
   return (
     <div>
         <HeroSection/>
-        <ServiceGrid/>
+        {/* <ServiceGrid/> */}
         <ExperienceStats/>
+        <HelpBrands/>
         <FeatureSection/>
-        <ElectricalServices/>
+        {/* <ElectricalServices/> */}
         <ExperienceCentreBanner/>
         <ContactSection/>
+       
        
        
     </div>

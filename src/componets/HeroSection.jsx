@@ -49,38 +49,39 @@ const CarouselHero = () => {
   };
 
   return (
-    <div className="relative w-full h-[50vh] md:h-[80vh] text-white overflow-hidden">
-        <Navbar/>
-      {/* Background Image */}
+    <div className="relative w-full h-[60vh] md:h-[90vh] text-white overflow-hidden">
+      <Navbar />
+
+      {/* Background with Gradient Overlay */}
       <div className="absolute inset-0">
         <img
           src={slides[current].image}
           alt={slides[current].title}
-          className="w-full h-full object-cover brightness-60 transition-all duration-700"
+          className="w-full h-full object-cover transition-all duration-700"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
       </div>
 
-      {/* Bottom-Left Content */}
-      <div className="absolute pb-[100px] md:pb-0 bottom-6 left-6 z-10 max-w-xl text-left">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_0_10px_#000]">
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 z-10 max-w-2xl">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-lg">
           {slides[current].title}
         </h1>
-        <p className="mt-3 text-white/90 font-medium text-base sm:text-lg">
+        <p className="mt-4 text-white/90 text-lg md:text-xl font-medium">
           {slides[current].description}
         </p>
-        <button className="  mt-6 px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-black text-base font-semibold rounded-full shadow-lg transition">
-          Book a Free Consultation
+        <button className="w-[300px] mt-8 px-8 py-3 bg-yellow-400 hover:bg-yellow-500 text-black text-lg font-semibold rounded-full shadow-xl transition transform hover:scale-105">
+          Contact Us
         </button>
       </div>
 
-      {/* Bottom-Right Controls with Bullets in Between */}
-      <div className="absolute  bottom-6 right-6 z-20 flex items-center gap-3">
-        {/* Left Arrow */}
+      {/* Controls */}
+      <div className="absolute bottom-6 right-6 z-20 flex items-center gap-4">
         <button
           onClick={handlePrev}
-          className="bg-white/20 hover:bg-white/30 p-3 rounded-full text-white"
+          className="bg-white/20 hover:bg-white/30 p-3 rounded-full text-white shadow-lg"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-6 h-6" />
         </button>
 
         {/* Bullets */}
@@ -89,19 +90,18 @@ const CarouselHero = () => {
             <button
               key={index}
               onClick={() => handleBulletClick(index)}
-              className={`w-3 h-3 rounded-full border border-white ${
-                current === index ? "bg-white" : "bg-transparent"
-              } hover:bg-white transition`}
+              className={`w-3.5 h-3.5 rounded-full border border-white shadow ${
+                current === index ? "bg-yellow-400 border-yellow-400" : "bg-transparent"
+              } transition`}
             />
           ))}
         </div>
 
-        {/* Right Arrow */}
         <button
           onClick={handleNext}
-          className="bg-white/20 hover:bg-white/30 p-3 rounded-full text-white"
+          className="bg-white/20 hover:bg-white/30 p-3 rounded-full text-white shadow-lg"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-6 h-6" />
         </button>
       </div>
     </div>

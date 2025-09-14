@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { motion } from "framer-motion";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -39,96 +40,136 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-white py-16 px-4">
-      <div className="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <section className="bg-gradient-to-br from-black via-[#0d0d0d] to-gray-900 py-20 px-6">
+      <div className="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* Left content */}
-        <div>
-          <div className="h-[2px] w-8 bg-orange-600 mb-4" />
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <motion.div
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <div className="h-[3px] w-12 bg-orange-500 mb-6" />
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-snug">
             Why Hire Hedgehog Electric <br /> As Your Electrician?
           </h2>
-          <p className="text-gray-700 mb-6">
-            Our electricians are hardworking, dedicated, and focused on meeting the needs of our clients. Your safety is our very top priority, and we go above and beyond to ensure that all electrical installations, repairs, and other services are done in a way that ensures the optimal functioning of your electrical systems.
+          <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+            Our electricians are hardworking, dedicated, and focused on meeting the needs of our clients. 
+            Your safety is our top priority. We go above and beyond to ensure that all electrical installations, 
+            repairs, and other services are carried out safely and effectively.
           </p>
 
-          <div className="flex items-center gap-4 mt-6">
-            <button className="bg-orange-600 text-white px-6 py-2 font-semibold rounded">Contact Us</button>
-            <div className="flex items-center gap-2">
-              <div className="bg-orange-100 p-2 rounded-full">
-                <FaPhoneAlt className="text-orange-600" />
+          <div className="flex items-center gap-6 mt-8">
+            <button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 font-semibold rounded-lg shadow-md transition">
+              Contact Us
+            </button>
+            <div className="flex items-center gap-3">
+              <div className="bg-orange-100 p-3 rounded-full">
+                <FaPhoneAlt className="text-orange-600 text-lg" />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Have any questions?</p>
-                <p className="text-lg font-semibold">435-310-5268</p>
+                <p className="text-sm text-gray-400">Have any questions?</p>
+                <p className="text-lg font-semibold text-white">+91-9670870839</p>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right form */}
-        <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium">Name *</label>
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="bg-[#111] p-8 rounded-xl shadow-lg border border-gray-800"
+        >
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ y: 40, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <label className="text-sm text-gray-400">First Name *</label>
                 <input
                   type="text"
                   name="firstName"
                   required
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="w-full border p-2 rounded"
-                  placeholder="First Name"
+                  className="w-full bg-[#1a1a1a] border border-gray-700 focus:border-orange-500 text-white p-3 rounded-lg outline-none transition"
+                  placeholder="Enter first name"
                 />
-              </div>
-              <div>
-                <label className="text-sm font-medium">&nbsp;</label>
+              </motion.div>
+              <motion.div
+                initial={{ y: 40, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <label className="text-sm text-gray-400">Last Name</label>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full border p-2 rounded mt-[1.25rem] sm:mt-0"
-                  placeholder="Last Name"
+                  className="w-full bg-[#1a1a1a] border border-gray-700 focus:border-orange-500 text-white p-3 rounded-lg outline-none transition"
+                  placeholder="Enter last name"
                 />
-              </div>
+              </motion.div>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Phone Number *</label>
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <label className="text-sm text-gray-400">Phone Number *</label>
               <input
                 type="text"
                 name="phone"
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full border p-2 rounded"
-                placeholder="Phone Number"
+                className="w-full bg-[#1a1a1a] border border-gray-700 focus:border-orange-500 text-white p-3 rounded-lg outline-none transition"
+                placeholder="Enter phone number"
               />
-            </div>
+            </motion.div>
 
-            <div>
-              <label className="text-sm font-medium">How Can We Help?</label>
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <label className="text-sm text-gray-400">Message</label>
               <textarea
                 name="message"
-                rows="3"
+                rows="4"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border p-2 rounded"
-                placeholder="Any Message"
+                className="w-full bg-[#1a1a1a] border border-gray-700 focus:border-orange-500 text-white p-3 rounded-lg outline-none transition resize-none"
+                placeholder="Write your message..."
               />
-            </div>
+            </motion.div>
 
-            
-
-            <button
-              type="submit"
-              className="bg-white border px-5 py-2 rounded hover:bg-gray-100"
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
             >
-              Send Information
-            </button>
+              <button
+                type="submit"
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md"
+              >
+                Send Information
+              </button>
+            </motion.div>
           </form>
-        </div>
+        </motion.div>
       </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </section>
