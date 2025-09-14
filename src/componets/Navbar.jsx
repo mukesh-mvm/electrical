@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from "react-router-dom"; // ✅ Import Link
 
 // Service data
 const services1 = [
@@ -62,11 +63,17 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinkClass = "relative px-2 py-1 transition text-white hover:text-yellow-400";
-  const underlineClass = "absolute bottom-0 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full";
+  const navLinkClass =
+    "relative px-2 py-1 transition text-white hover:text-yellow-400";
+  const underlineClass =
+    "absolute bottom-0 left-0 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full";
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${isSticky ? "bg-gray-900 shadow-md" : "bg-transparent"} text-white`}>
+    <header
+      className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${
+        isSticky ? "bg-gray-900 shadow-md" : "bg-transparent"
+      } text-white`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <div className="text-xl font-bold tracking-wide">
@@ -75,14 +82,21 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-base font-medium items-center">
-          <a href="/" className={`group ${navLinkClass}`}>
+          <Link to="/" className={`group ${navLinkClass}`}>
             Home
             <span className={underlineClass}></span>
-          </a>
+          </Link>
 
           {/* Services Dropdown */}
-          <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-            <button className={`group flex items-center gap-1 ${navLinkClass}`} onClick={() => setServicesOpen(prev => !prev)}>
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button
+              className={`group flex items-center gap-1 ${navLinkClass}`}
+              onClick={() => setServicesOpen((prev) => !prev)}
+            >
               Services
               {servicesOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               <span className={underlineClass}></span>
@@ -95,7 +109,11 @@ const Navbar = () => {
                   {services1.map((service, idx) => (
                     <div
                       key={idx}
-                      className={`px-2 py-1 cursor-pointer transition ${activeService === idx ? "bg-yellow-500/30 text-yellow-400" : "hover:bg-gray-700"}`}
+                      className={`px-2 py-1 cursor-pointer transition ${
+                        activeService === idx
+                          ? "bg-yellow-500/30 text-yellow-400"
+                          : "hover:bg-gray-700"
+                      }`}
                       onMouseEnter={() => setActiveService(idx)}
                     >
                       {service.title}
@@ -106,31 +124,34 @@ const Navbar = () => {
                 {/* Right Column - Items */}
                 <div className="w-1/2 p-5 grid grid-cols-1 gap-2">
                   {services1[activeService]?.items.map((item, subIdx) => (
-                    <a
+                    <Link
                       key={subIdx}
-                      href={serviceRoutes[item] || "#"}
+                      to={serviceRoutes[item] || "#"}
                       className="block text-sm text-gray-300 hover:text-yellow-400 transition"
                     >
                       {item}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
             )}
           </div>
 
-          <a href="/about-us" className={`group ${navLinkClass}`}>
+          <Link to="/about-us" className={`group ${navLinkClass}`}>
             About Us
             <span className={underlineClass}></span>
-          </a>
-          <a href="/contact" className={`group ${navLinkClass}`}>
+          </Link>
+          <Link to="/contact" className={`group ${navLinkClass}`}>
             Contact Us
             <span className={underlineClass}></span>
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Hamburger */}
-        <button onClick={toggleMenu} className="md:hidden text-white z-40">
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-white z-40"
+        >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -138,11 +159,16 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900/95 backdrop-blur-sm z-20 px-6 py-6 space-y-6">
-          <a href="/" className="block text-white text-lg hover:text-yellow-400">Home</a>
+          <Link to="/" className="block text-white text-lg hover:text-yellow-400">
+            Home
+          </Link>
 
           {/* Services Mobile Accordion */}
           <div>
-            <button onClick={() => setServicesOpen(!servicesOpen)} className="flex items-center justify-between w-full text-white text-lg hover:text-yellow-400">
+            <button
+              onClick={() => setServicesOpen(!servicesOpen)}
+              className="flex items-center justify-between w-full text-white text-lg hover:text-yellow-400"
+            >
               <span>Services</span>
               {servicesOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </button>
@@ -154,13 +180,13 @@ const Navbar = () => {
                     <div className="font-semibold text-gray-200">{service.title}</div>
                     <div className="ml-3 mt-2 space-y-1 text-sm">
                       {service.items.map((item, subIdx) => (
-                        <a
+                        <Link
                           key={subIdx}
-                          href={serviceRoutes[item] || "#"}
+                          to={serviceRoutes[item] || "#"}
                           className="block text-gray-400 hover:text-yellow-400"
                         >
                           {item}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -169,8 +195,12 @@ const Navbar = () => {
             )}
           </div>
 
-          <a href="/about-us" className="block text-white text-lg hover:text-yellow-400">About Us</a>
-          <a href="/contact" className="block text-white text-lg hover:text-yellow-400">Contact Us</a>
+          <Link to="/about-us" className="block text-white text-lg hover:text-yellow-400">
+            About Us
+          </Link>
+          <Link to="/contact" className="block text-white text-lg hover:text-yellow-400">
+            Contact Us
+          </Link>
         </div>
       )}
     </header>
